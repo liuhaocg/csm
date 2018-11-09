@@ -36,6 +36,6 @@ func BindDevice(s *dbr.Session, dtype, token, objectID string) error {
 // UnbindDevice ...
 func UnbindDevice(s *dbr.Session, token string) (string, error) {
 	var objecyID string
-	err := s.Select("object_id").From("s_push.t_device").Where(dbr.Eq("token", token)).Limit(1).LoadValue(&objecyID)
+	_, err := s.Select("object_id").From("s_push.t_device").Where(dbr.Eq("token", token)).Limit(1).Load(&objecyID)
 	return objecyID, err
 }
